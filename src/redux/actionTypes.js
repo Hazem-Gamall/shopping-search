@@ -1,0 +1,3 @@
+export const ADD_RESULTS = "ADD_RESULTS";
+export const RESULTS_LOADING = "RESULTS_LOADING";
+export const RESLULTS_FAILED = "RESULTS_FAILED";
