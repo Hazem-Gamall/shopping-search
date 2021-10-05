@@ -35,26 +35,10 @@ class Home extends Component{
             <div className="container">
                 <div className="row">
                     <div className="col-12 col-md-10 m-auto mt-3">
-                        <Card>
-                            <CardHeader>
-                                <h2>Test</h2>
-                            </CardHeader>
-                            <CardBody>
-                                <CardText>
-                                    <LocalForm onSubmit={this.handleSubmit}>
-                                        <FormGroup>
-                                            <Label htmlFor="query">Enter your search query!</Label>
-                                            <Control.text className="form-control" model='.query' name='query' id='query'/>
-                                        </FormGroup> 
-                                        <FormGroup className='mt-2'>
-                                            <Button type="submit" className = "bg bg-primary"><NavLink to={`/results/${this.state.query}`}/>Search</Button>
-                                        </FormGroup>
-                                    </LocalForm>
-                                </CardText>
-                            </CardBody>
-                        </Card>
+                        
                     </div>
                 </div>
+                
             </div>
         );
     }
