@@ -16,22 +16,24 @@ const mapDispatchToProps = (dispatch) => ({
     fetchResults: () => {dispatch(fetchResults())}
 })
 
+
 class Main extends Component{
     constructor(props){
         super(props);
     }
 
-    componentDidMount(){
-        this.props.fetchResults();
-    }
-
     render(){
+
+        const fetchResults = () => {
+            return <Results results = {this.state.results} />
+        }
+
         return(
             <>
             <Header/>
             <Switch>
-                <Route path="/" component={Home} />
-                <Route exact path="/results" component={Results} />
+                <Route path="/home" component={() => <Home fetchResults={this.props.fetchResults} />} />
+                <Route path="/results/:query" component={Results} />
                 <Redirect to ="/home" />
             </Switch>
             </>
