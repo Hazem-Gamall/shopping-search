@@ -107,10 +107,9 @@ body{
   right: 50%;
 }
 
-#form1{
-  width: 50vw;
+#sort-check-label{
+  color: white;
 }
-
 .navbar{
   position: sticky;
 }

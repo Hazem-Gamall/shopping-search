@@ -15,6 +15,9 @@ const mapStateToProps = (state) => {
 }
 
 const RenderResults = ({results}) => {
+    if(results.length < 1){
+        return(<h1 className='text-danger'>Website Unavilable</h1>);
+    }
     return results.map((result)=> {
         return(
                     <Card className="result-card col-12 col-md-5 rounded border" key = {result.id}>
@@ -43,7 +46,11 @@ class Results extends Component{
     }
     
     componentDidMount(){
-        this.props.dispatch(fetchResults(this.props.match.params.query));
+        this.props.dispatch(fetchResults(
+            {
+                query:this.props.match.params.query,
+                sort:this.props.match.params.sort
+            }));
     }
 
     

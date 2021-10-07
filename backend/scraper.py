@@ -4,11 +4,13 @@ from bs4 import BeautifulSoup
 class BaseScraper():
     def __init__(self):
         self.query = None
+        self.query = None
         self.results = None
         self.url = None
     
-    def setQuery(self, query):
+    def setQuery(self, query, sort):
         self.query = query
+        self.sort = sort
         self.url = self._setUrl()
     
     def _setUrl(self):
@@ -23,16 +25,18 @@ class BaseScraper():
 
 class AmazonScraper(BaseScraper):
 
-    def _setUrl(self):
-        return f'https://www.amazon.eg/s?k={self.query}&s=price-desc-rank&language=en'
+    def _setUrl(self):        
+        sortQuery = 'price-desc-rank' if self.sort =='true' else ''
+        return f'https://www.amazon.eg/s?k={self.query}&s={sortQuery}&language=en'
     
     def scrap(self):
         searchResults = []
 
         request = requests.get(self.url, headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36'})
         if request.status_code != 200:
-            print(f'request error:{request.status_code}')
-            exit()
+            print(f'Amazon request error:{request.status_code}')
+            self.results = []
+            return
         soup = BeautifulSoup(request.content, 'html.parser')
         resultDivs = soup.find_all(class_='s-result-item')
 
@@ -59,15 +63,17 @@ class AmazonScraper(BaseScraper):
 
 class JumiaScraper(BaseScraper):
     def _setUrl(self):
-        return f'https://www.jumia.com.eg/catalog/?q={self.query}&sort=highest-price'
+        sortQuery = 'highest-price' if self.sort =='true' else ''
+        return f'https://www.jumia.com.eg/catalog/?q={self.query}&sort={sortQuery}'
 
     def scrap(self):
         searchResults = []
         
         request = requests.get(self.url)
         if request.status_code != 200:
-            print(f'request error:{request.status_code}')
-            exit()
+            print(f'Jumia request error:{request.status_code}, {request.reason}')
+            self.results = []
+            return
         soup = BeautifulSoup(request.content, 'html.parser')
 
         resultElements = soup.find(class_='-pvs col12').find_all('article')

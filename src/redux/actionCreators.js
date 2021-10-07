@@ -1,10 +1,10 @@
 import * as actionTypes from './actionTypes';
 import { baseUrl } from '../shared/baseUrl';
 
-export const fetchResults = (query) => (dispatch) => {
+export const fetchResults = ({query, sort}) => (dispatch) => {
     dispatch(resultsLoading())
 
-    return fetch(baseUrl + query)
+    return fetch(`${baseUrl} ${query}&${sort}`)
             .then(response => {
                 if(response.ok){
                     return response;

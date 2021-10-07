@@ -11,10 +11,11 @@ class requestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if not self.path.endswith('/favicon.ico'):
             startTime = time.time()
-            amazonScraper.setQuery(self.path[1:])
-            jumiaScraper.setQuery(self.path[1:])
+            query, sort = self.path[1:].split('&')
+            amazonScraper.setQuery(query, sort)
+            jumiaScraper.setQuery(query, sort)
 
-            print(self.path[1:])
+            print(self.path[1:].split('&'))
             
             finalResult = {}
 

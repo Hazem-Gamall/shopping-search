@@ -35,7 +35,7 @@ class Main extends Component {
                 <div id = 'page-content'>
                     <Switch>
                         <Route path="/home" component={() => <Home fetchResults={this.props.fetchResults} />} />
-                        <Route path="/results/:query" component={Results} />
+                        <Route path="/results/:query&:sort" component={Results} />
                         <Redirect to="/home" />
                     </Switch>
                 </div>

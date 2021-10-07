@@ -19,10 +19,11 @@ class Header extends Component {
         this.setState({ isNavOpen: !this.state.isNavOpen });
     }
 
-    handleSubmit = ({ query }) => {
-        console.log("query:" + JSON.stringify(query));
-        if (query !== undefined) {
-            this.props.history.push(`/results/${query}`)
+    handleSubmit = (values) => {
+        console.log("query:" + JSON.stringify(values));
+        const isSort = !values.sort || values.sort ===undefined? 'false' : 'true';
+        if (values.query !== undefined) {
+            this.props.history.push(`/results/${values.query}&${isSort}`)
             this.props.history.go();
         }
     }
@@ -38,26 +39,35 @@ class Header extends Component {
     render() {
         return (
             <Navbar dark expand='md' className="sticky-top" >
-                <div className='container justify-content-around'>
-
-                    <NavbarBrand className="mr-5" href="/home">
-                        <span className="fa fa-search fa-small"></span>
-                    </NavbarBrand>
-
+                <div className='container justify-content-start'>
                     <div className='row'>
-                        <LocalForm onSubmit={this.handleSubmit}>
-                            <div class="input-group col-12 col-md-12">
-                                <div class="form-outline">
-                                    <Control.text model='.query' type="search" placeholder='search' id="form1" class="form-control" />
+                        <div className='col-1'>
+                            <NavbarBrand className="" href="/home">
+                                <span className="fa fa-search fa-small"></span>
+                            </NavbarBrand>
+                        </div>
+                        <div className='col-11'>
+                            <LocalForm onSubmit={this.handleSubmit}>
+                                <div class="input-group">
+                                    <div class="row form-outline flex-nowrap">
+
+                                        <div className='col-8 col-md-auto d-flex flex-nowrap'>
+                                            <Control.text model='.query' type="search" placeholder='search' class="form-control" />
+                                            <button type="submit" class="btn btn-success rounded">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+
+                                        <div className='col-4 col-md-auto d-flex align-items-center'>
+                                            <label htmlFor='sort-check' className='form-check-label' id='sort-check-label'>Sort?</label>
+                                            <Control.checkbox model='.sort' className=' form-check-input m-2' id='sort-check' checked ></Control.checkbox>
+                                        </div>
+                                    </div>
                                 </div>
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fa fa-search"></i>
-                                </button>
+                            </LocalForm>
+                        </div>
 
-                            </div>
-                        </LocalForm>
                     </div>
-
                 </div>
             </Navbar>
         );
