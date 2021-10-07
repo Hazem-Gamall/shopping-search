@@ -17,10 +17,19 @@ h1{
 }
 
 .footer{
-  background-color: #D1C4E9;
-  margin:0px auto;
-  padding: 20px 0px 20px 0px;
+  background-color: #476fff;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  /* margin:0px auto;
+  padding: 20px 0px 20px 0px; */
+
 }
+
+#page-content{
+  padding-bottom: 20vh;    /* Footer height */
+}
+
 .jumbotron {
   padding:70px 30px 70px 30px;
   margin:0px auto;
@@ -59,11 +68,6 @@ address{
   transform: translateX(100%);
   transition: all 300ms ease-out;
 }
-/* 
-.overflow{
-  height: 500px;
-  overflow-y: scroll;
-} */
 
 .card.result-card:hover{
   transform: scale(1.01);
@@ -91,6 +95,12 @@ address{
   margin-right: 1vw;
 }
 
+body{
+  position: relative;
+  min-height: 100vh;
+
+}
+
 .loading{
   position: fixed;
   top: 50%;
@@ -107,4 +117,24 @@ address{
 
 .nav{
   position: sticky;
+}
+
+.carousel-img{
+  float: left;
+  width:  100%;
+  height: 50vh;
+  object-fit: contain;
+  object-position: center;
+}
+
+.carousel-row{
+  background-color: #1277b6;
+  border-radius: 10px;
+
+}
+
+.res-card-header{
+  background-color: #2091d8;
+  color: #000000;
+
 }

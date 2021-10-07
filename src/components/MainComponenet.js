@@ -1,10 +1,11 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch, withRouter } from "react-router";
 import { fetchResults } from "../redux/actionCreators";
 import Header from "./HeaderCompenent";
 import Home from "./HomeComponent";
 import Results from './ResultsComponent';
+import Footer from "./FooterComponent";
 
 const mapStateToProps = (state) => {
     return {
@@ -13,31 +14,34 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchResults: () => {dispatch(fetchResults())}
+    fetchResults: () => { dispatch(fetchResults()) }
 })
 
 
-class Main extends Component{
-    constructor(props){
+class Main extends Component {
+    constructor(props) {
         super(props);
     }
 
-    render(){
+    render() {
 
         const fetchResults = () => {
-            return <Results results = {this.state.results} />
+            return <Results results={this.state.results} />
         }
 
-        return(
-            <>
-            <Header/>
-            <Switch>
-                <Route path="/home" component={() => <Home fetchResults={this.props.fetchResults} />} />
-                <Route path="/results/:query" component={Results} />
-                <Redirect to ="/home" />
-            </Switch>
-            </>
-        )
+        return (
+            <div>
+                <Header />
+                <div id = 'page-content'>
+                    <Switch>
+                        <Route path="/home" component={() => <Home fetchResults={this.props.fetchResults} />} />
+                        <Route path="/results/:query" component={Results} />
+                        <Redirect to="/home" />
+                    </Switch>
+                </div>
+                <Footer />
+            </div>
+        );
     }
 }
 

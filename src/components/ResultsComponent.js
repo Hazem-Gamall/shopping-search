@@ -17,9 +17,9 @@ const mapStateToProps = (state) => {
 const RenderResults = ({results}) => {
     return results.map((result)=> {
         return(
-                    <Card className="result-card col-6 col-md-3" key = {result.id}>
+                    <Card className="result-card col-12 col-md-5 rounded border" key = {result.id}>
                         <a href={result.url}>
-                        <CardHeader className="text-center bg-warning search-rs-header" title={result.title}>
+                        <CardHeader className="text-center res-card-header" title={result.title}>
                             {result.title}
                         </CardHeader>
                         
@@ -52,9 +52,7 @@ class Results extends Component{
             return(
                 <div className='container'>
                     <div className='row loading'>
-                        <div className='col-12'>
                             <Loading />
-                        </div>
                     </div>
                 </div>
             );
@@ -72,14 +70,14 @@ class Results extends Component{
                 <div className="container">
                     <div className="row">
                         <h1>Amazon</h1>
-                        <CardGroup className='d-flex flex-row flex-nowrap'>
+                        <CardGroup className='flex-nowrap'>
                             <RenderResults results = {this.props.results.amazon} />
                         </CardGroup>
                     </div>
                     <hr></hr>
                     <div className="row">
                         <h1>Jumia</h1>
-                        <CardGroup className="d-flex flex-row flex-nowrap">
+                        <CardGroup className="flex-nowrap">
                             <RenderResults results = {this.props.results.jumia} />
                         </CardGroup>
                     </div>

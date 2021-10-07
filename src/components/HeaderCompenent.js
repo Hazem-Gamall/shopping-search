@@ -36,48 +36,30 @@ class Header extends Component {
     }
 
     render() {
-
-        const jumbotron = this.state.isHome ? (<Jumbotron>
-            <div className='container'>
-                <div className='row row-header'>
-                    <div className='col-12 col-md-6'>
-                        <h1>Search For Me</h1>
-                        <p>Search for me is a simple website that allows you to search for a certian product on multiple pre-set websites at the same time.</p>
-                    </div>
-                </div>
-            </div>
-        </Jumbotron>) : (<></>);
-
         return (
-            <>
-                <Navbar dark expand='md' className="sticky-top" >
-                    <div className='container justify-content-around'>
+            <Navbar dark expand='md' className="sticky-top" >
+                <div className='container justify-content-around'>
 
-                        <NavbarBrand className="mr-5" href="/home">
-                            <span className="fa fa-search fa-small"></span>
-                        </NavbarBrand>
+                    <NavbarBrand className="mr-5" href="/home">
+                        <span className="fa fa-search fa-small"></span>
+                    </NavbarBrand>
 
-                        <div className='row'>
-                            <LocalForm onSubmit={this.handleSubmit}>
-                                <div class="input-group col-12 col-md-12">
-                                    <div class="form-outline">
-                                        <Control.text model='.query' type="search" placeholder='search' id="form1" class="form-control" />
-                                    </div>
-                                    <button type="submit" class="btn btn-success">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-
+                    <div className='row'>
+                        <LocalForm onSubmit={this.handleSubmit}>
+                            <div class="input-group col-12 col-md-12">
+                                <div class="form-outline">
+                                    <Control.text model='.query' type="search" placeholder='search' id="form1" class="form-control" />
                                 </div>
-                            </LocalForm>
-                        </div>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-search"></i>
+                                </button>
 
+                            </div>
+                        </LocalForm>
                     </div>
-                </Navbar>
 
-                {jumbotron}
-
-
-            </>
+                </div>
+            </Navbar>
         );
 
     }
